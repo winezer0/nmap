@@ -59,7 +59,7 @@ Driver = {
   end,
 
   login = function(self, _, password)
-    local msg = ("PASS %s\r\nNICK nmap_brute\r\nUSER anonymous 0 * :Nmap brute\r\n"):format(password)
+    local msg = ("PASS %s\r\nNICK USERACCESS\r\nUSER anonymous 0 * :USERACCESS\r\n"):format(password)
     local status, data = self.socket:send(msg)
     local success = false
 
@@ -89,7 +89,7 @@ Driver = {
 }
 
 local function needsPassword(host, port)
-  local msg = ("NICK %s\r\nUSER anonymous 0 * :Nmap brute\r\n"):format(rand.random_alpha(9))
+  local msg = ("NICK %s\r\nUSER anonymous 0 * :USERACCESS\r\n"):format(rand.random_alpha(9))
   local s, r, opts, _ = comm.tryssl(host, port, msg, { timeout = 15000 } )
   local err, code
 

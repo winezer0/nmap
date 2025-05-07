@@ -40,7 +40,7 @@ portrule = shortport.port_or_service(7547, "http")
 local MAGIC_COOKIE = "C107373883"
 
 local function vuln_to_misfortune_cookie(host, port)
-  local request_path = "/nmap_test"
+  local request_path = "/user_test"
   local options = { cookies = MAGIC_COOKIE .. "=" .. request_path }
   local flag = request_path .. "' was not found on the RomPager server."
   local req = http.get(host, port, "/", options)

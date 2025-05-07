@@ -47,7 +47,7 @@ portrule = shortport.port_or_service(3690, "svnserve", "tcp", "open")
 
 svn =
 {
-  svn_client = "nmap-brute v0.1",
+  svn_client = "svn-client v0.1",
 
   new = function(self, host, port, repo)
     local o = {}

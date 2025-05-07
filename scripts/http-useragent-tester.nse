@@ -20,7 +20,7 @@ Checks if various crawling utilities are allowed by the host.
 -- |   Status for browser useragent: 200
 -- |   Redirected To: https://www.example.com/
 -- |   Allowed User Agents:
--- |     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+-- |     Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.3440.106
 -- |     libwww
 -- |     lwp-trivial
 -- |     libcurl-agent/1.0
@@ -43,8 +43,7 @@ Checks if various crawling utilities are allowed by the host.
 -- <elem key="Status for browser useragent">200</elem>
 -- <elem key="Redirected To">https://www.example.com/</elem>
 -- <table key="Allowed User Agents">
---   <elem>Mozilla/5.0 (compatible; Nmap Scripting Engine;
---   https://nmap.org/book/nse.html)</elem>
+--   <elem>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.3440.106</elem>
 --   <elem>libwww</elem>
 --   <elem>lwp-trivial</elem>
 --   <elem>libcurl-agent/1.0</elem>
@@ -143,7 +142,7 @@ action = function(host, port)
   end
 
   -- We perform a normal browser request and get the returned location
-  local loc, status = getLastLoc(host, port, "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17")
+  local loc, status = getLastLoc(host, port, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.3440.106")
   output['Status for browser useragent'] = status
 
   if loc then

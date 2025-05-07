@@ -58,7 +58,7 @@ Driver = {
       "Client-DPAP-Version: 1.1\r\n" ..
       "\r\n\r\n"
 
-    local c = base64.enc("nmap:" .. password)
+    local c = base64.enc("user:" .. password)
     data = data:format( self.host.ip, self.port.number, self.host.ip, c )
 
     local status = self.socket:send( data )

@@ -47,7 +47,7 @@ Reference:
 -- |       https://bugzilla.clamav.net/show_bug.cgi?id=11585
 -- |_      https://twitter.com/nitr0usmx/status/740673507684679680
 -- @xmloutput
--- <table key="NMAP-1">
+-- <table key="USER-1">
 -- <elem key="title">ClamAV Remote Command Execution</elem>
 -- <elem key="state">VULNERABLE</elem>
 -- <table key="description">
@@ -102,7 +102,7 @@ local function scan(host, port, file)
   local status, data
 
   if not file then
-    status, data = comm.exchange(host, port, "SCAN /trinity/loves/nmap")
+    status, data = comm.exchange(host, port, "SCAN /trinity/loves/user")
     if not status then
       stdnse.debug1("Failed to send SCAN command:%s", data)
       return nil

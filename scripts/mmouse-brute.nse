@@ -91,7 +91,7 @@ local function hasPassword(host, port)
   if ( not(driver:connect()) ) then
     error("Failed to connect to server")
   end
-  local status = driver:login(nil, "nmap")
+  local status = driver:login(nil, "user")
   driver:disconnect()
 
   return not(status)

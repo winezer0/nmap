@@ -103,7 +103,7 @@ local function check_dkim(socket, smtp_opts)
   local message = (
     string.format( "MIME-Version: 1.0\r\nFrom: <%s>\r\nTo: <%s>\r\n",
       smtp_opts.mailfrom, smtp_opts.mailto)
-    .."Subject: Nmap Exim DKIM Format String check\r\n"
+    .."Subject: USER Exim DKIM check String Format\r\n"
     -- use a fake DKIM-Signature header.
     .."DKIM-Signature: v=1; a=%s%s%s%s;"
     .." c=%s%s%s%s; q=dns/txt;\r\n"

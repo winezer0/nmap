@@ -107,7 +107,7 @@ local function kill_proftpd(socket)
 
   stdnse.debug2("sending evil TELNET_IAC commands.")
   local st, ret = socket:send(string.rep(TELNET_KILL, 4069)..
-                        '\255'..string.rep("Nmap", 256).."\n")
+                        '\255'..string.rep("User", 256).."\n")
   if not st then
     return st, ret
   end

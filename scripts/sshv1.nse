@@ -44,7 +44,7 @@ action = function(host, port)
     return
   end
 
-  socket:send("SSH-1.5-NmapNSE_1.0\n")
+  socket:send("SSH-1.5-SERIVCE_1.0\n")
 
   -- should be able to consume at least 13 bytes
   -- key length is a 4 byte integer

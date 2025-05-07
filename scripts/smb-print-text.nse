@@ -112,7 +112,7 @@ action = function(host,port)
   local printer_handle = string.sub(result.data,25,#result.data-4)
   stdnse.debug1("Printer handle %s",stdnse.tohex(printer_handle))
   -- call RpcStartDocPrinter - opnum 17
-  status,result = msrpc.spoolss_start_doc_printer(smbstate,printer_handle,"nmap_print_test.txt") -- patched version will allow this
+  status,result = msrpc.spoolss_start_doc_printer(smbstate,printer_handle,"print_test_temp.txt") -- patched version will allow this
   if not status then
     return false
   end

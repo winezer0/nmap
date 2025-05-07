@@ -55,7 +55,7 @@ function action (host, port)
   local output = stdnse.output_table()
 
   local sd, line = comm.tryssl(host, port,
-    ("USER nmap +iw nmap :Nmap Wuz Here\nNICK %s\n"):format(nick),
+    ("USER user +iw user :user access\nNICK %s\n"):format(nick),
     {request_timeout=6000})
   if not sd then return "Unable to open connection" end
 

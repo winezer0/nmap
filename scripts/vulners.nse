@@ -127,7 +127,7 @@ function get_results(what, vers, type)
   local vulns
   local option={
     header={
-      ['User-Agent'] = string.format('Vulners NMAP Plugin %s', api_version)
+      ['User-Agent'] = string.format('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.3440.106 %s', api_version)
     },
     any_af = true,
   }

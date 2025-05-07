@@ -339,7 +339,7 @@ end
 -- @param realm string containing the Kerberos REALM
 -- @return status boolean, true on success, false on failure
 local function isValidRealm( host, port, realm )
-  return checkUser( host, port, realm, "nmap")
+  return checkUser( host, port, realm, "user")
 end
 
 -- Wraps the checkUser function so that it is suitable to be called from

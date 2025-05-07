@@ -78,7 +78,7 @@ local function checkAuth(host, port)
     return false, "\n  No authentication required"
   end
 
-  local status, err = helper:authenticate({username="nmap", password="nmapbruteprobe"})
+  local status, err = helper:authenticate({username="user", password="password"})
   if ( err ~= "Authentication failed" ) then
     return false, err
   end

@@ -92,12 +92,12 @@ local function process_instance( instance )
     [3]={ ["Linked Servers"] = [[ SELECT srvname, srvproduct, providername
       FROM master..sysservers
       WHERE srvid > 0 ]] },
-    [1]={ ["Databases"] = [[ CREATE TABLE #nmap_dbs(name varchar(255), db_size varchar(255), owner varchar(255),
+    [1]={ ["Databases"] = [[ CREATE TABLE #user_dbs(name varchar(255), db_size varchar(255), owner varchar(255),
       dbid int, created datetime, status varchar(512), compatibility_level int )
-      INSERT INTO #nmap_dbs EXEC sp_helpdb
+      INSERT INTO #user_dbs EXEC sp_helpdb
       SELECT name, db_size, owner
-      FROM #nmap_dbs ]] .. db_filter .. [[
-      DROP TABLE #nmap_dbs ]] }
+      FROM #user_dbs ]] .. db_filter .. [[
+      DROP TABLE #user_dbs ]] }
   }
 
   status, errorMessage = helper:ConnectEx( instance )

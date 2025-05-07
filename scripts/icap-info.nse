@@ -74,12 +74,12 @@ end
 
 action = function(host, port)
 
-  local services = {"/avscan", "/echo", "/srv_clamav", "/url_check", "/nmap" }
+  local services = {"/avscan", "/echo", "/srv_clamav", "/url_check", "/user" }
   local headers = {"Service", "ISTag"}
   local probe = {
     "OPTIONS icap://%s%s ICAP/1.0",
     "Host: %s",
-    "User-Agent: nmap icap-client/0.01",
+    "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.3440.106",
     "Encapsulated: null-body=0"
   }
   local hostname = stdnse.get_hostname(host)

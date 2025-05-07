@@ -166,7 +166,7 @@ action = function(host, port)
 
   -- send the client banner
   -- NB: The protocol does not prescribe which side sends the banner first
-  status = sock:send("SSH-2.0-Nmap_SSH2_Enum_Algos\r\n")
+  status = sock:send("SSH-2.0-SSHD_SSH2_Enum_Algos\r\n")
   if not status then
     sock:close()
     return

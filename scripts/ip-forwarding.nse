@@ -67,9 +67,9 @@ icmpEchoRequest = function(ifname, host, addr)
   probe.mac_dst = host.mac_addr
   probe.ip_bin_src = ipOps.ip_to_str(iface.address)
   probe.ip_bin_dst = ipOps.ip_to_str(addr)
-  probe.echo_id = 0x1234
+  probe.echo_id = 0x1204
   probe.echo_seq = 6
-  probe.echo_data = "Nmap host discovery."
+  probe.echo_data = "Echo Echo discovery."
   probe:build_icmp_echo_request()
   probe:build_icmp_header()
   probe:build_ip_packet()

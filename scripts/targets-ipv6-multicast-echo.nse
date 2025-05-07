@@ -71,7 +71,7 @@ local function single_interface_broadcast(if_nfo, results)
   probe.ip_bin_dst = dst_ip6
   probe.echo_id = 5
   probe.echo_seq = 6
-  probe.echo_data = "Nmap host discovery."
+  probe.echo_data = "Echo Echo discovery."
   probe:build_icmpv6_echo_request()
   probe:build_icmpv6_header()
   probe:build_ipv6_packet()

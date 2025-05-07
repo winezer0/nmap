@@ -38,7 +38,7 @@ action = function(host, port)
   "\000\000\000\000\000\000\000\000" .. -- padding for hostname
   "\000\000\000\000\000\000\000\000" .. -- padding for hostname
   "\000\000\000\000\000\000\000\000" .. -- padding for hostname
-  "\000\000\000\000" .. "nmap" .. -- padding for hostname, vendor name
+  "\000\000\000\000" .. "user" .. -- padding for hostname, vendor name
   "\000\000\000\000\000\000\000\000" .. -- padding for vendor name
   "\000\000\000\000\000\000\000\000" .. -- padding for vendor name
   "\000\000\000\000\000\000\000\000" .. -- padding for vendor name

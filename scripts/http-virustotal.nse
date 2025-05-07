@@ -122,7 +122,7 @@ local function requestFileScan(filename)
   end
 
   local shortfile = filename:match("^.*[\\/](.*)$")
-  local boundary = "----------------------------nmapboundary"
+  local boundary = "----------------------------boundary"
   local header = { ["Content-Type"] = ("multipart/form-data; boundary=%s"):format(boundary) }
   local postdata = ("--%s\r\n"
   .. 'Content-Disposition: form-data; name="apikey"\r\n\r\n'

@@ -55,7 +55,7 @@ portrule = shortport.http
 
 local PAYLOAD_OK = [=[<?xml version="1.0" encoding="UTF-8"?>
 <probe type="string"><![CDATA[
-nmap
+user
 ]]></probe>]=]
 
 local PAYLOAD_TIME = [=[<?xml version="1.0" encoding="UTF-8"?>

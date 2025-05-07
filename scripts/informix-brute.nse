@@ -57,7 +57,7 @@ Driver =
   -- @return true on success, false on failure
   connect = function( self )
     local status, data
-    self.helper = informix.Helper:new( self.host, self.port, "on_nmap_dummy" )
+    self.helper = informix.Helper:new( self.host, self.port, "on_user_dummy" )
 
     status, data = self.helper:Connect(brute.new_socket())
     if ( not(status) ) then

