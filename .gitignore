@@ -70,3 +70,4 @@ libz/configure.log
 *.user
 /mswin32/.vs
 /.idea
+/mswin32/build-pcre2
