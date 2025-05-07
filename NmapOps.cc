@@ -381,9 +381,6 @@ administrator privileges.";
 #endif
 
 
-  /* Force disable the ping scan */
-  pingtype = PINGTYPE_NONE;
-
   /* Insure that at least one scantype is selected */
   if (!noportscan && !(TCPScan() || UDPScan() || SCTPScan() || ipprotscan)) {
     if (isr00t)
