@@ -2495,14 +2495,14 @@ local tests = {
       ["code"] = "get",
       ["id"] = 0x1234,
       ["type"] = "confirmable",
-      ["token"] = "nmapcoap",
+      ["token"] = "usercoap",
       ["token_length"] = 8,
       ["options"] = {
         {["name"] = "uri_path", ["value"] = ".well-known"},
         {["name"] = "uri_path", ["value"] = "core"},
       },
     },
-    "\x48\x01\x12\x34nmapcoap\xBB.well-known\x04core"
+    "\x48\x01\x12\x34usercoap\xBB.well-known\x04core"
   },
 }
 
@@ -2643,8 +2643,8 @@ local tests = {
   },
   {
     "text/plain",
-    "nmap",
-    "nmap"
+    "user",
+    "user"
   },
   {
     "application/octet-stream",

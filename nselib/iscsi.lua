@@ -579,7 +579,7 @@ Helper = {
 
     p:setTransit(true)
     p:setNSG(Packet.LoginRequest.NSG.LoginOperationalNegotiation)
-    p.kvp:add( "InitiatorName", "iqn.1991-05.com.microsoft:nmap_iscsi_probe" )
+    p.kvp:add( "InitiatorName", "iqn.1991-05.com.microsoft:user_iscsi_probe" )
     p.kvp:add( "SessionType", "Discovery" )
     p.kvp:add( "AuthMethod", "None" )
 
@@ -657,7 +657,7 @@ Helper = {
 
     p:setTransit(true)
     p:setNSG(Packet.LoginRequest.NSG.LoginOperationalNegotiation)
-    p.kvp:add( "InitiatorName", "iqn.1991-05.com.microsoft:nmap_iscsi_probe" )
+    p.kvp:add( "InitiatorName", "iqn.1991-05.com.microsoft:user_iscsi_probe" )
     p.kvp:add( "SessionType", "Normal" )
     p.kvp:add( "TargetName", target_name )
     p.kvp:add( "AuthMethod", auth_method )

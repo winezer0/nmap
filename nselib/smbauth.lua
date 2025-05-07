@@ -775,7 +775,7 @@ function get_security_blob(security_blob, ip, username, domain, password, passwo
     local lanman, ntlm, mac_key = get_password_response(ip, username, domain, password, password_hash, hash_type, challenge, true)
 
     -- Convert the username and domain to unicode (TODO: Disable the unicode flag, evaluate if that'll work)
-    local hostname = unicode.utf8to16("nmap")
+    local hostname = unicode.utf8to16("user")
     username = unicode.utf8to16(username)
     domain   = (#username > 0 ) and unicode.utf8to16(domain) or ""
     ntlm     = (#username > 0 ) and ntlm or ""

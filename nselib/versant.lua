@@ -18,7 +18,7 @@ _ENV = stdnse.module("versant", stdnse.seeall)
 Versant = {
 
   -- fallback to these constants when version and user are not given
-  USER = "nmap",
+  USER = "user",
   VERSION = "8.0.2",
 
   -- Creates an instance of the Versant class

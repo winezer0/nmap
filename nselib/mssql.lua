@@ -2017,10 +2017,10 @@ LoginPacket =
   collation = 0,
 
   -- Strings
-  client = "Nmap",
+  client = "USER",
   username = nil,
   password = nil,
-  app = "Nmap NSE",
+  app = "USER SQL",
   server = nil,
   library = "mssql.lua",
   locale = "",

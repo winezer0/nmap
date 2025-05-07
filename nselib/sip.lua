@@ -148,7 +148,7 @@ SessionData = {
   --- Retrieves the SIP users full name
   -- @name SessionData.getName
   -- @return name string containing the users full name
-  getName = function(self) return self.name or "Nmap NSE" end,
+  getName = function(self) return self.name or "FreeSWITCH-mod_sofia" end,
 }
 
 -- The session class holds the code necessary to register a SIP session
@@ -527,7 +527,7 @@ Request = {
     setmetatable(o, self)
     self.__index = self
 
-    o.ua = "Nmap NSE"
+    o.ua = "FreeSWITCH-mod_sofia"
     o.protocol = proto or "UDP"
     o.expires = 0
     o.allow = "PRACK, INVITE ,ACK, BYE, CANCEL, UPDATE, SUBSCRIBE"

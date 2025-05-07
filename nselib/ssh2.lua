@@ -211,7 +211,7 @@ fetch_host_key = function( host, port, key_type )
   status = socket:receive_lines(1)
   if not status then socket:close(); return end
   -- send our banner
-  status = socket:send("SSH-2.0-Nmap-SSH2-Hostkey\r\n")
+  status = socket:send("SSH-2.0-SSHD-SSH2-Hostkey\r\n")
   if not status then socket:close(); return end
 
   local packet = transport.build( transport.kex_init( {

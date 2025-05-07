@@ -98,7 +98,7 @@
 --
 -- @args http.useragent The value of the User-Agent header field sent with
 -- requests. By default it is
--- <code>"Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"</code>.
+-- <code>"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.2357.124"</code>.
 -- A value of the empty string disables sending the User-Agent header field.
 --
 -- @args http.pipeline If set, it represents the number of HTTP requests that'll be
@@ -157,7 +157,7 @@ local have_ssl, openssl = pcall(require,'openssl')
 --Use zlib if we have it
 local have_zlib, zlib = pcall(require,'zlib')
 
-USER_AGENT = stdnse.get_script_args('http.useragent') or "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+USER_AGENT = stdnse.get_script_args('http.useragent') or "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.2357.124"
 local host_header = stdnse.get_script_args('http.host')
 local MAX_REDIRECT_COUNT = 5
 local MAX_BODY_SIZE = tonumber(stdnse.get_script_args('http.max-body-size')) or 2*1024*1024
@@ -1449,7 +1449,7 @@ function generic_request(host, port, method, path, options)
     -- ntlm works with three messages. we send a request, it sends
     -- a challenge, we respond to the challenge.
     local hostname = options.auth.hostname or "localhost" -- the hostname to be sent
-    local workstation_name = options.auth.workstation_name or "NMAP" -- the workstation name to be sent
+    local workstation_name = options.auth.workstation_name or "USER" -- the workstation name to be sent
     local username = options.auth.username -- the username as specified
 
     local auth_blob = "NTLMSSP\x00" .. -- NTLM signature

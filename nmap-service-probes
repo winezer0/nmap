@@ -9331,7 +9331,7 @@ match http m|^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?X-Powered-By: Servlet ([\w._
 match http m|^HTTP/1\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Prayer/([\w._-]+)\r\n|s p/Prayer webmail httpd/ v/$1/
 match http m|^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Nu-OS/([\w._-]+)\r\n.*<title>Pioneer Web Control System</title>|s p/Nu-OS/ v/$1/ i/Pioneer VSX-2020 AV receiver/ d/media device/
 match http m|^HTTP/1\.0 403 Access Denied\r\nConnection: close\r\n\r\n<html>The request you issued is not an authorized Convergence Notary request\.\n$| p/Convergence Notary server httpd/
-match http m|^HTTP/1\.1 200 OK\r\nDate: Wed, 31 Dec 1969 15:00:00 GMT\r\nConnection: close\r\nContent-Type: text/html; charset=ISO-8859-1\r\n.*<title>MONITOR NETWORK SETTINGS</title>.*<!--\nvar mac=\"(\w+)\";\nvar ip3=\d+;\nvar ip2=\d+;\nvar ip1=\d+;\nvar ip0=\d+;\nvar nm3=\d+;\nvar nm2=\d+;\nvar nm1=\d+;\nvar nm0=\d+;\nvar gw3=\d+;\nvar gw2=\d+;\nvar gw1=\d+;\nvar gw0=\d+;\nvar dh=\"0\";\nvar vDns1_0=(\d+);\nvar vDns1_1=(\d+);\nvar vDns1_2=(\d+);\nvar vDns1_3=(\d+);\nvar vDns2_0=\d+;\nvar vDns2_1=\d+;\nvar vDns2_2=\d+;\nvar vDns2_3=\d+;\nvar vVer=\"([\w._-]+)\";|s p/NEC Multeos M461 TV http config/ v/$6/ i/MAC: $1; nameserver $2.$3.$4.$5/
+match http m|^HTTP/1\.1 200 OK\r\nDate: Wed, 31 Dec 1969 15:00:00 GMT\r\nConnection: close\r\nContent-Type: text/html; charset=ISO-8859-1\r\n.*<title>MONITOR NETWORK SETTINGS</title>.*<!--\nvar mac=\"(\w+)\";\nvar ip3=\d+;\nvar ip2=\d+;\nvar ip1=\d+;\nvar ip0=\d+;\nvar nm3=\d+;\nvar xxx=\d+;\nvar nm1=\d+;\nvar nm0=\d+;\nvar gw3=\d+;\nvar gw2=\d+;\nvar gw1=\d+;\nvar gw0=\d+;\nvar dh=\"0\";\nvar vDns1_0=(\d+);\nvar vDns1_1=(\d+);\nvar vDns1_2=(\d+);\nvar vDns1_3=(\d+);\nvar vDns2_0=\d+;\nvar vDns2_1=\d+;\nvar vDns2_2=\d+;\nvar vDns2_3=\d+;\nvar vVer=\"([\w._-]+)\";|s p/NEC Multeos M461 TV http config/ v/$6/ i/MAC: $1; nameserver $2.$3.$4.$5/
 match http m|^HTTP/1\.1 303 See Other\r\nConnection: close\r\nLocation: http://[\d.]+/login_home\.html\r\n\r\n| p/Tandberg Codian 3510 video gateway http config/ d/media device/
 match http m|^HTTP/1\.0 301 Moved Permanently\r\nCache-Control: no-store\r\nConnection: close\r\nAccept-Ranges: none\r\nLocation: https?://([\w._-]+)/CitrixLogonPoint/WICL/\r\nContent-Length: 0\r\n\r\n| p/Citrix Access Gateway/ h/$1/ cpe:/a:citrix:access_gateway/
 match http m|^HTTP/1\.0 301 Moved Permanently\r\nCache-Control: no-cache\r\nConnection: close\r\nAccept-Ranges: none\r\nLocation: https?://([\w._-]+):\d+/\r\n\r\n$| p/Citrix Access Gateway/ h/$1/ cpe:/a:citrix:access_gateway/
@@ -13896,7 +13896,7 @@ match xamarin m|^ERROR: Another instance is running\n| p/Xamarin MonoTouch/
 # listeners (with NLA?) only respond to this one.
 # This must be sent before TLSSessionReq because Windows RDP will handshake TLS
 # immediately and we don't have a way of identifying RDP at that point.
-Probe TCP TerminalServerCookie q|\x03\0\0*%\xe0\0\0\0\0\0Cookie: mstshash=nmap\r\n\x01\0\x08\0\x03\0\0\0|
+Probe TCP TerminalServerCookie q|\x03\0\0*%\xe0\0\0\0\0\0Cookie: mstshash=user\r\n\x01\0\x08\0\x03\0\0\0|
 rarity 7
 ports 3388,3389
 fallback TerminalServer
@@ -14817,7 +14817,7 @@ softmatch ldap m|^0..?\x02\x01\x01a..?\n\x01.\x04\0\x04|s
 # This probe sends a SIP OPTIONS request.
 # Most of the numbers, usernames, and hostnames are abitrary.
 ##############################NEXT PROBE##############################
-Probe TCP SIPOptions q|OPTIONS sip:nm SIP/2.0\r\nVia: SIP/2.0/TCP nm;branch=foo\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nMax-Forwards: 70\r\nContent-Length: 0\r\nContact: <sip:nm@nm>\r\nAccept: application/sdp\r\n\r\n|
+Probe TCP SIPOptions q|OPTIONS sip:xx SIP/2.0\r\nVia: SIP/2.0/TCP nm;branch=foo\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nMax-Forwards: 70\r\nContent-Length: 0\r\nContact: <sip:xx@xx>\r\nAccept: application/sdp\r\n\r\n|
 rarity 5
 ports 406,5060,8081,31337
 sslports 5061
@@ -14831,24 +14831,24 @@ match atalla m|^<00#020035#0101##>\r\n<00#020035#0101##>\r\n<00#020035#0101##>\r
 match essnet m|^\xff\0\x13\0/v\x0f\0\0\0\0\0\0\0\x01\0\xc8\0\t\0/v\x0f\0\x04\x001040025\0\0| p/Hyperion Essbase/
 
 match honeypot m|^HTTP/1\.0 200 OK\r\nAllow: OPTIONS, GET, HEAD, POST\r\nContent-Length: 0\r\nConnection: close\r\n\r\n| p/Dionaea Honeypot httpd/
-match honeypot m|^SIP/2\.0 200 OK\r\nContent-Length: 0\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nFrom: sip:nm@nm;tag=root\r\nAccept: application/sdp\r\nTo: sip:nm2@nm2\r\nContact: sip:nm2@nm2\r\nCSeq: 42 OPTIONS\r\nAllow: REGISTER, OPTIONS, INVITE, CANCEL, BYE, ACK\r\nCall-ID: 50000\r\nAccept-Language: en\r\n\r\n| p/Dionaea Honeypot sipd/
+match honeypot m|^SIP/2\.0 200 OK\r\nContent-Length: 0\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nFrom: sip:xx@xx;tag=root\r\nAccept: application/sdp\r\nTo: sip:xxx@xxx\r\nContact: sip:xxx@xxx\r\nCSeq: 42 OPTIONS\r\nAllow: REGISTER, OPTIONS, INVITE, CANCEL, BYE, ACK\r\nCall-ID: 50000\r\nAccept-Language: en\r\n\r\n| p/Dionaea Honeypot sipd/
 
 match http m|^SIP/2\.0 501 Not Implemented\r\nServer: Embedded HTTP Server ([\d.]+)\r\n| p/Embedded HTTP Server/ v/$1/
 match http m|^HTTP/1\.1 500 Internal Server Error\r\nServer: Catwalk/([\d.]+)\r\n| p/Catwalk/ v/$1/ i/Canon imageRUNNER C5000-series printer http config/ d/printer/ cpe:/h:canon:imagerunner_c5000/
 # Canon iR3235
 match http m|^HTTP/1\.1 500 Internal Server Error\r\nServer: Catwalk\r\n| p/Catwalk/ i/Canon imageRUNNER printer http config/ d/printer/
 match http m|^HTTP/1\.0 404 Resource not found\r\nServer: Opera/([\w._-]+)\r\n(?:[^\r\n]+\r\n)*?Set-Cookie: unite-session-id=[0-9a-f]+; Max-Age=2073600; path=/\r\n|s p/Opera Unite httpd/ v/$1/
-match http m|^HTTP/1\.0 302 Found\r\nLocation: ([\w:/.-]*)sip:nm\r\nServer: BigIP\r\nConnection: close\r\nContent-Length: 0\r\n\r\n$| p/F5 BIG-IP load balancer httpd/ i/redirecting to $1/ d/load balancer/
+match http m|^HTTP/1\.0 302 Found\r\nLocation: ([\w:/.-]*)sip:xx\r\nServer: BigIP\r\nConnection: close\r\nContent-Length: 0\r\n\r\n$| p/F5 BIG-IP load balancer httpd/ i/redirecting to $1/ d/load balancer/
 match http m|^HTTP/1\.1 401 Access Denied\r\n(?:[^\r\n]+\r\n)*?Set-Cookie: logintheme=cpanel; path=/; secure; port=\d+\r\n(?:[^\r\n]+\r\n)*?Server: cpsrvd/([\w._-]+)\r\n|s p/cPanel httpd/ v/$1/
 match http m|^HTTP/1\.1 401 Access Denied\r\n(?:[^\r\n]+\r\n)*?Set-Cookie: logintheme=cpanel; path=/; HttpOnly; port=\d+\r\n(?:[^\r\n]+\r\n)*?Server: cpsrvd/([\w._-]+)\r\n|s p/cPanel httpd/ v/$1/ o/Unix/
-match http m|^HTTP/1\.1 302 Moved Temporarily\r\nDate: .*\r\nLocation: https://[\w._-]+sip:nm\r\nConnection: close\r\n\r\n$| p/Asterisk PBX httpd/ d/PBX/ cpe:/a:digium:asterisk/
+match http m|^HTTP/1\.1 302 Moved Temporarily\r\nDate: .*\r\nLocation: https://[\w._-]+sip:xx\r\nConnection: close\r\n\r\n$| p/Asterisk PBX httpd/ d/PBX/ cpe:/a:digium:asterisk/
 match http m|^HTTP/1\.0 501 Document Follows\r\nContent-Type: text/html\r\nContent-Length: 106\r\n\r\n<HEAD><TITLE>501 Method Not Implemented</TITLE></HEAD>\r\n<BODY><H1>501 Method Not Implemented</H1>\r\n</BODY>$| p/HP StorageWorks MSL2024 tape library httpd/ d/storage-misc/
 match http m|^HTTP/2\.0 404 Not Found\r\nDate: .*\r\nServer: Restlet-Framework/([\w._-]+)\r\n.*<title>Status page</title>\n</head>\n<body style=\"font-family: sans-serif;\">\n<p style=\"font-size: 1\.2em;font-weight: bold;margin: 1em 0px;\">Not Found</p>\n<p>The server has not found anything matching the request URI</p>\n|s p/Serviio media server http status/ i/Restlet framework $1/ cpe:/a:restlet:restlet:$1/
 match http m|^HTTP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: Restlet-Framework/@major-number@\.@minor-number@@release-type@@release-number@\r\n.*<p>The server has not found anything matching the request URI</p>|s p/Serviio media server http status/ v/1.2/ cpe:/a:restlet:restlet/
 match http m=^HTTP/1\.1 500 Internal Server Error\r\nContent-Length: \d+\r\nContent-Type: text/plain\r\n\r\nTraceback \(most recent call last\):\n  File \"([\w._/-]+/(?:sickbeard|Sick-Beard)/cherrypy)/wsgiserver/__init__\.py\", line \d+, in communicate\n= p/CherryPy/ i/Sick Beard PVR; path: $1/ cpe:/a:cherrypy:cherrypy/
 match http m|^HTTP/1\.1 501 Unimplimented\r\nConnection: close\r\nContent-Length: 0\r\n\r\n| p/Huawei HG8245T modem http config/ d/broadband router/ cpe:/h:huawei:hg8245t/a
 match http m|^HTTP/1\.0 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY><H1>501 Not Implemented</H1>\nPOST to non-script is not supported in Boa\.\n</BODY></HTML>\n|s p/Boa httpd/ cpe:/a:boa:boa/
-match http m|^HTTP/1\.1 302 Moved\r\nDate: .* GMT\r\nServer: cPanel\r\nPersistent-Auth: false\r\nCache-Control: no-cache\r\nConnection: close\r\nLocation: https://([\w.-]+):2078sip:nm\r\nVary: Accept-Encoding\r\nExpires: Fri, 01 Jan 1990 00:00:00 GMT\r\nX-Redirect-Reason: requiressl\r\n\r\n| p/cPanel https redirector/ h/$1/
+match http m|^HTTP/1\.1 302 Moved\r\nDate: .* GMT\r\nServer: cPanel\r\nPersistent-Auth: false\r\nCache-Control: no-cache\r\nConnection: close\r\nLocation: https://([\w.-]+):2078sip:xx\r\nVary: Accept-Encoding\r\nExpires: Fri, 01 Jan 1990 00:00:00 GMT\r\nX-Redirect-Reason: requiressl\r\n\r\n| p/cPanel https redirector/ h/$1/
 
 match imsp m|^VIA: BAD IMSP busy\r\nFROM: BAD IMSP busy\r\nTO: BAD IMSP busy\r\n|
 
@@ -14884,35 +14884,35 @@ match sip m|^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: Asterisk PBX ([
 match sip m|^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: Asterisk PBX ([\w._~+-]+)\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO, PUBLISH\r\n|s p/Asterisk/ v/$1/ d/PBX/ cpe:/a:digium:asterisk:$1/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Asterisk PBX ([\w._~+-]+)\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO, PUBLISH\r\n|s p/Asterisk/ v/$1/ d/PBX/ cpe:/a:digium:asterisk:$1/
 match sip m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Glassfish_SIP_([\w._-]+)\r\n|s p/Glassfish SIP Server/ v/$1/
-match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?To: <sip:nm2@nm2>;tag=[0-9a-f-]+\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,REFER,INFO,NOTIFY,PRACK,MESSAGE\r\n(?:[^\r\n]+\r\n)*?Supported: replaces,timer,100rel\r\nAccept: application/sdp\r\n|s p/Cisco 7940 IP Phone/ d/VoIP phone/
+match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?To: <sip:xxx@xxx>;tag=[0-9a-f-]+\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,REFER,INFO,NOTIFY,PRACK,MESSAGE\r\n(?:[^\r\n]+\r\n)*?Supported: replaces,timer,100rel\r\nAccept: application/sdp\r\n|s p/Cisco 7940 IP Phone/ d/VoIP phone/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Telepathy-SofiaSIP/([\w._-]+) sofia-sip/([\w._-]+)\r\n|s p/Telepathy-SofiaSIP/ v/$1/ i/sofia-sip $2/
-match sip m|^SIP/2\.0 503 Service Unavailable\r\n(?:[^\r\n]+\r\n)*?Warning: 399 \"Routing failed: ccbid=997 tcpindex=2 socket=nm:\d+'\r\n(?:[^\r\n]+\r\n)*?To: <sip:nm2@nm2>;tag=\d+\r\n|s p/Cisco CallManager 6/ cpe:/h:cisco:call_manager:6/
+match sip m|^SIP/2\.0 503 Service Unavailable\r\n(?:[^\r\n]+\r\n)*?Warning: 399 \"Routing failed: ccbid=997 tcpindex=2 socket=nm:\d+'\r\n(?:[^\r\n]+\r\n)*?To: <sip:xxx@xxx>;tag=\d+\r\n|s p/Cisco CallManager 6/ cpe:/h:cisco:call_manager:6/
 match sip m|^SIP/2\.0 500 Server Internal Error\r\n(?:[^\r\n]+\r\n)*?User-Agent: Thomson Inventel / HW_V[\w._-]+ / FW_V[\w._-]+ / SW_V([\w._-]+)\r\n|s p/Aladino SIP phone/ v/$1/ d/VoIP phone/
 match sip m|^SIP/2\.0 406 Not acceptable\r\n(?:[^\r\n]+\r\n)*?Server: sipXecs/([\w._-]+) sipXecs/sipxbridge \(Linux\)\r\n|s p/SIPfoundry sipXecs PBX/ v/$1/ o/Linux/ cpe:/o:linux:linux_kernel/a
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: VOIP_Agent_001\r\nAllow: INVITE, ACK, BYE, CANCEL, OPTIONS, SUBSCRIBE, REFER, NOTIFY, UPDATE, MESSAGE, SERVICE, INFO, PING\r\n|s p/D-Link DVG-5121SP VoIP adapter/ d/VoIP adapter/ cpe:/h:dlink:dvg-5121sp/a
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Sipek on PJSUA v([\w._-]+)/win32\r\n|s p/Sipek VoIP/ v/$1/ i/on PJSUA/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: snom([\w._-]+)/([\w._-]+)\r\n|s p/Snom $1 VoIP phone/ v/$2/ d/VoIP phone/ cpe:/h:snom:$1/a
-match sip m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContact: <sip:[\d.]+:\d+>\r\nAllow: INVITE,ACK,CANCEL,OPTIONS,UPDATE,INFO,NOTIFY,BYE,REFER\r\nAccept: application/sdp,application/media_control\+xml,application/dtmf-relay,application/dtmf,message/sipfrag;version=2\.0\r\nContent-Length: 0\r\n\r\n| p/Tandberg Codian IP GW 3510 VoIP gateway/ d/VoIP adapter/ cpe:/h:tandberg:codian_ip_gw_3510/a
+match sip m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContact: <sip:[\d.]+:\d+>\r\nAllow: INVITE,ACK,CANCEL,OPTIONS,UPDATE,INFO,NOTIFY,BYE,REFER\r\nAccept: application/sdp,application/media_control\+xml,application/dtmf-relay,application/dtmf,message/sipfrag;version=2\.0\r\nContent-Length: 0\r\n\r\n| p/Tandberg Codian IP GW 3510 VoIP gateway/ d/VoIP adapter/ cpe:/h:tandberg:codian_ip_gw_3510/a
 match sip m|^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent: (AVM FRITZ!Box Fon WLAN [\w._-]+(?: v\d)?) ([\w._-]+ \(\w+ +\d+ \d+\))|s p/$1 SIP/ v/$2/ d/WAP/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: QIP ([\w._ -]+)\r\n|s p/QIP instant messenger SIP/ v/$1/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: T-Com-IpPbxSrv/([\w._-]+)\r\n|s p/Telekom Netphone VoIP phone SIP/ v/$1/ d/VoIP phone/
 match sip m|^SIP/2\.0 403 Not relaying\r\n(?:[^\r\n]+\r\n)*?Server: kamailio \(([\w._-]+) \(x86_64/linux\)\)\r\n|s p/Kamailio/ v/$1/ i/x86_64/ o/Linux/ cpe:/o:linux:linux_kernel/
 match sip m|^SIP/2\.0 478 Unresolvable destination \(478/SL\)\r\n(?:[^\r\n]+\r\n)*?Server: kamailio \(([\w._-]+) \(x86_64/linux\)\)\r\n|s p/Kamailio/ v/$1/ i/x86_64/ o/Linux/ cpe:/o:linux:linux_kernel/
 match sip m|^SIP/2\.0 405 Method Not Allowed\r\n(?:[^\r\n]+\r\n)*?User-Agent: Patton SN(\w+) 5BIS MxSF v([\w._-]+) [0-9A-F]+ R([\w._-]+) (\d\d\d\d-\d\d-\d\d) H323 SIP BRI\r\n\r\n|s p/Patton SmartNode $1 VoIP adapter http config/ v/$2 $4/ d/VoIP adapter/ o/SmartWare $3/ cpe:/h:patton:sn$1/ cpe:/o:patton:smartware:$3/
-match sip m|^SIP/2\.0 404 Not Found\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nFrom: <sip:nm@nm>;tag=root\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n$| p/Nokia N86 phone SIP/ d/phone/ cpe:/h:nokia:n86/
-match sip m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;received=[\d.]+;branch=foo\r\nCall-ID: 50000\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=foo\r\nCSeq: 42 OPTIONS\r\nAllow: PRACK, INVITE, ACK, BYE, CANCEL, UPDATE, SUBSCRIBE, NOTIFY, REFER, MESSAGE, OPTIONS\r\nAccept: application/sdp, application/pidf\+xml, application/xpidf\+xml, application/simple-message-summary, message/sipfrag;version=2\.0, application/im-iscomposing\+xml, text/plain\r\nSupported: replaces, 100rel, timer, norefersub\r\nAllow-Events: presence, message-summary, refer\r\nUser-Agent: netTALK\r\n| p/netTALK/ d/phone/
-match sip m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nFrom: <sip:nm@nm>;tag=root\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nAllow: INVITE,ACK,CANCEL,BYE,OPTIONS,REFER,NOTIFY\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 [\d.]+\r\ns=-\r\nc=IN IP4 [\d.]+\r\nt=0 0\r\nm=audio 0 RTP/AVP 18 4 3 8 0 101\r\na=rtpmap:101 telephone-event/8000\r\n$| p/eyeP Media VoIP phone SIP/ d/VoIP phone/
+match sip m|^SIP/2\.0 404 Not Found\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nTo: <sip:xxx@xxx>;tag=\w+\r\nFrom: <sip:xx@xx>;tag=root\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n$| p/Nokia N86 phone SIP/ d/phone/ cpe:/h:nokia:n86/
+match sip m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;received=[\d.]+;branch=foo\r\nCall-ID: 50000\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=foo\r\nCSeq: 42 OPTIONS\r\nAllow: PRACK, INVITE, ACK, BYE, CANCEL, UPDATE, SUBSCRIBE, NOTIFY, REFER, MESSAGE, OPTIONS\r\nAccept: application/sdp, application/pidf\+xml, application/xpidf\+xml, application/simple-message-summary, message/sipfrag;version=2\.0, application/im-iscomposing\+xml, text/plain\r\nSupported: replaces, 100rel, timer, norefersub\r\nAllow-Events: presence, message-summary, refer\r\nUser-Agent: netTALK\r\n| p/netTALK/ d/phone/
+match sip m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nTo: <sip:xxx@xxx>;tag=\w+\r\nFrom: <sip:xx@xx>;tag=root\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nAllow: INVITE,ACK,CANCEL,BYE,OPTIONS,REFER,NOTIFY\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 [\d.]+\r\ns=-\r\nc=IN IP4 [\d.]+\r\nt=0 0\r\nm=audio 0 RTP/AVP 18 4 3 8 0 101\r\na=rtpmap:101 telephone-event/8000\r\n$| p/eyeP Media VoIP phone SIP/ d/VoIP phone/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Aastra (MX-ONE) SN/([\w._-]+)\r\n|s p/Aastra $1 PBX SIP/ v/$2/ d/PBX/
-match sip m|^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nContent-Length: 0\r\n\r\n$| p/Microsoft Outlook Web Access SIP/
-match sip m|^SIP/2\.0 481 Call Leg/Transaction Does Not Exist\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=0-\w+-\w+-\w+-\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;received=[\d.]+;branch=foo\r\nContent-Length: 0\r\n\r\n$| p/Sony PCS-TL50 videoconferencing SIP/ cpe:/h:sony:pcs-tl50/
-match sip m|^SIP/2\.0 404 Not found\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=local-tag\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContact: <sip:nm@nm>\r\nContent-Length: 0\r\n\r\n$| p/Edgewater Networks Edgemarc 4500 series VoIP gateway SIP/ d/VoIP adapter/
-match sip m|^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nServer: RTC/4\.0\r\nContent-Length: 0\r\n\r\n| p/Microsoft Lync SIP/ v/2010/ cpe:/a:microsoft:lync:2010/
-match sip m|^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nServer: RTC/5\.0\r\nContent-Length: 0\r\n\r\n| p/Microsoft Lync SIP/ v/2013/ cpe:/a:microsoft:lync:2013/
-match sip m|^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nServer: RTC/6\.0\r\nContent-Length: 0\r\n\r\n| p/Microsoft Skype for Business SIP/ v/2015/ cpe:/a:microsoft:skype_for_business:2015/
+match sip m|^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nContent-Length: 0\r\n\r\n$| p/Microsoft Outlook Web Access SIP/
+match sip m|^SIP/2\.0 481 Call Leg/Transaction Does Not Exist\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=0-\w+-\w+-\w+-\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;received=[\d.]+;branch=foo\r\nContent-Length: 0\r\n\r\n$| p/Sony PCS-TL50 videoconferencing SIP/ cpe:/h:sony:pcs-tl50/
+match sip m|^SIP/2\.0 404 Not found\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=local-tag\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContact: <sip:xx@xx>\r\nContent-Length: 0\r\n\r\n$| p/Edgewater Networks Edgemarc 4500 series VoIP gateway SIP/ d/VoIP adapter/
+match sip m|^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nServer: RTC/4\.0\r\nContent-Length: 0\r\n\r\n| p/Microsoft Lync SIP/ v/2010/ cpe:/a:microsoft:lync:2010/
+match sip m|^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nServer: RTC/5\.0\r\nContent-Length: 0\r\n\r\n| p/Microsoft Lync SIP/ v/2013/ cpe:/a:microsoft:lync:2013/
+match sip m|^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nServer: RTC/6\.0\r\nContent-Length: 0\r\n\r\n| p/Microsoft Skype for Business SIP/ v/2015/ cpe:/a:microsoft:skype_for_business:2015/
 match sip m|^SIP/2\.0 403 Non-self Request-URI\r\n(?:[^\r\n]+\r\n)*?Server: Epygi Quadro SIP User Agent/v([\w._-]+) \(QUADRO-([^\)]*)\)\r\n|s p/Epygi Quadro $2 PBX SIP/ v/$1/ d/PBX/ cpe:/h:epygi:$2/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE,ACK,CANCEL,OPTIONS,UPDATE,INFO,NOTIFY,BYE,REFER\r\nAccept: application/sdp,application/media_control\+xml,application/dtmf-relay,application/dtmf,message/sipfrag;version=2\.0\r\n|s p/Cisco TelePresence MCU 4505 videoconference system SIP/ cpe:/h:cisco:telepresence_mcu_4505/
 match sip m|^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent:Polycom (HDX [\w._ -]+) \(Release - ([\w._-]+)\)\r\n|s p/Polycom $1 videoconference system SIP/ v/$2/ cpe:/h:polycom:$1/
-match sip m|^SIP/2\.0 403 Forbidden\r\nContent-Type: application/X-NECSIPEXT2MLv1\r\nSupported: timer\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nContent-Length: 99\r\n\r\nInd-ErrDsp=nec-code: 1:Non-Registered Access       ,2: \(Retry after    10 sec\)    ,6:1: EXIT  ,10\r\n| p/NEC SL1100 VoIP PBX/ d/PBX/
+match sip m|^SIP/2\.0 403 Forbidden\r\nContent-Type: application/X-NECSIPEXT2MLv1\r\nSupported: timer\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nContent-Length: 99\r\n\r\nInd-ErrDsp=nec-code: 1:Non-Registered Access       ,2: \(Retry after    10 sec\)    ,6:1: EXIT  ,10\r\n| p/NEC SL1100 VoIP PBX/ d/PBX/
 match sip m|^SIP/2\.0 500 Server Internal Error\r\n(?:[^\r\n]+\r\n)*?User-Agent: SpeedTouch (\w+)\r\nX-Serialnumber: (\w+)\r\n|s p/SpeedTouch $1 SIP/ i/serial $2/ d/broadband router/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: (?:Polycom/[\d.]+ )?PolycomVVX-([\w._]+)-UA/([\d.]+)(?:_[\da-f]+)?\r\n|s p/Polycom $SUBST(1,"_"," ") SIP/ v/$2/ d/VoIP phone/ cpe:/h:polycom:$1/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Auerswald COMpact VoIP sofia-sip/([\w._-]+)\r\n|s p/sofia-sip/ v/$1/ i/Auerswald COMpact 5020 VoIP/ d/PBX/
@@ -14920,9 +14920,9 @@ match sip m|^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent: FRITZ!OS\r\
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent:PolycomRealPresenceGroup(\d+)/([\w._-]+)\r\n|s p/Polycom RealPresence Group $1 SIP/ v/$2/
 match sip m|^SIP/2\.0 500 Server Internal Error\r\n(?:[^\r\n]+\r\n)*?User-Agent: BT Home Hub ([\w._-]+) Build ([\w._-]+)\r\nX-Serialnumber: (\w+)\r\n|s p/BT Home Hub $1 SIP/ v/$2/ i/serial: $3/ d/VoIP adapter/
 match sip m|^SIP/2\.0 400 Invalid Via Port 0\r\n(?:[^\r\n]+\r\n)*?User-Agent: drgos-drg(\d+)-([\w._-]+)\r\n|s p/Genexis DRG $1 SIP/ v/$2/ d/broadband router/
-match sip m|^SIP/2\.0 200 OK\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[a-f\d-]{58}\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;received=[\d.]+;branch=foo\r\nSupported: gruu-10,replaces,msrtc-event-categories\r\nContent-Length: 0\r\n\r\n| p/LifeSize UVC Multipoint SIP/
+match sip m|^SIP/2\.0 200 OK\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=[a-f\d-]{58}\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;received=[\d.]+;branch=foo\r\nSupported: gruu-10,replaces,msrtc-event-categories\r\nContent-Length: 0\r\n\r\n| p/LifeSize UVC Multipoint SIP/
 match sip m|^SIP/2\.0 403 Forbidden\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY\r\n(?:[^\r\n]+\r\n)*?User-Agent: Wowza Streaming Engine ([\w._-]+) build(\d+)\r\n|s p/Wowza Streaming Engine sipd/ v/$1 build $2/ cpe:/a:wowza:wowza_streaming_engine:$1/
-match sip m|^SIP/2\.0 400 Invalid Contact information\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[0-9A-F]{32}\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+;ms-received-port=\d+;ms-received-cid=[0-9A-F]+\r\nms-diagnostics: 1018;reason=\"Parsing failure\";source=\"([\w._-]+)\"\r\nContent-Length: 0\r\n\r\n| p/Microsoft Office Communications Server sipd/ v/2007 R2/ h/$1/
+match sip m|^SIP/2\.0 400 Invalid Contact information\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=[0-9A-F]{32}\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+;ms-received-port=\d+;ms-received-cid=[0-9A-F]+\r\nms-diagnostics: 1018;reason=\"Parsing failure\";source=\"([\w._-]+)\"\r\nContent-Length: 0\r\n\r\n| p/Microsoft Office Communications Server sipd/ v/2007 R2/ h/$1/
 match sip m|^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent: AVM FRITZ!Box ([\w._-]+) Cable \(um\) ([\w._-]+) \([\w ]+\)\r\n|s p/AVM FRITZ!Box $1 sipd/ v/$2/ d/broadband router/
 match sip m|^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: TAU-1M\.IP/([\w._-]+) SN/\w+ sofia-sip/([\w._-]+)\r\n|s p/sofia-sip/ v/$2/ i/Eltex TAU-1M.IP VoIP gateway, version $1/ d/VoIP adapter/ cpe:/a:sofia-sip:sofia-sip:$2/ cpe:/h:eltex:tau-1m.ip:$1/
 match sip m|^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: Zoiper for Windows ([\d.]+) (r\d+)\r\n|s p/Zoiper for Windows sipd/ v/$1/ i/$2/ o/Windows/ cpe:/a:securax:zoiper_for_windows:$1/ cpe:/o:microsoft:windows/a
@@ -14930,7 +14930,7 @@ match sip m|^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: CommsMundi So
 match sip m|^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent:Polycom HDX (\d+) HD \(Release - ([\d.-]+)\)\r\n|s p/Polycom HDX $1 videoconferencing system sipd/ v/$2/ d/webcam/ cpe:/h:polycom:hdx_$1/
 match sip m|^SIP/2\.0 \d\d\d .*\r\nServer: TANDBERG/4102 \(X7\.0\.2\)\r\n|
 match sip m|^SIP/2\.0 200 OK\r\nAccept: application/sdp, application/dtmf-relay, application/QSIG, application/broadsoft\r\n(?:[^\r\n]+\r\n)*?Server: Patton (\w+) [^\r\n]+ M5T SIP Stack/([\w._-]+)\r\n|s p/M5T SIP Client Engine/ v/$2/ i/Patton $1/ d/VoIP adapter/ cpe:/a:media5corp:m5t_sip_client_engine:$2/ cpe:/h:patton:$1/
-match sip m|^SIP/2\.0 200 Rawr!!\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[\da-f]{32}\.[\da-f]+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Kamailio sipd/ cpe:/a:kamailio:kamailio/
+match sip m|^SIP/2\.0 200 Rawr!!\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=[\da-f]{32}\.[\da-f]+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Kamailio sipd/ cpe:/a:kamailio:kamailio/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent:Mitel-(\d\w+)-SIP-Phone ([\d.]+) [0-9A-F]{12}\r\n|s p/Mitel SIP phone sipd/ v/$2/ i/model: $1/ cpe:/h:mitel:$1-ip/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent:Mitel-Mitel-SIP-Phone ([\d.]+) [0-9A-F]{12}\r\n|s p/Mitel SIP phone sipd/ v/$1/
 match sip m|^SIP/2\.0 484 Address Incomplete\r\n(?:[^\r\n]+\r\n)*?Server: SIP Pulse (\d[\w.]+)\r\n|s p/SIP Pulse/ v/$1/ cpe:/a:sippulse:sippulse:$1/
@@ -14965,13 +14965,13 @@ match sip-proxy m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Audiocodes-Sip-G
 match sip-proxy m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Audiocodes-Sip-Gateway-(MP-[\w._ -]+)/v\.([\w._-]+)\r\n|s p/Audiocodes $1 SIP gateway/ v/$2/ d/VoIP adapter/
 match sip-proxy m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Berofix VOIP Gateway\r\n|s p/Berofix VoIP gateway/ d/VoIP adapter/
 match sip-proxy m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: HiPath ([\w._-]+) V([\w._ -]+) SIP Stack/([\w._-]+)\r\n|s p/Siemens HiPath $1 VoIP gateway/ v/$2/ i/SIP stack $3/ d/VoIP adapter/ cpe:/h:siemens:hipath_$1/a
-match sip-proxy m|^SIP/2\.0 503 Service Unavailable\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nDate: .*?\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nWarning: \d+ [\w._-]+ \"Unable to find a device handler for the request received on port \d+ from [\d.]+\"\r\nContent-Length: 0\r\n\r\n| p/Cisco Unified Communications Manager/ cpe:/a:cisco:unified_communications_manager/
+match sip-proxy m|^SIP/2\.0 503 Service Unavailable\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=\w+\r\nDate: .*?\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nWarning: \d+ [\w._-]+ \"Unable to find a device handler for the request received on port \d+ from [\d.]+\"\r\nContent-Length: 0\r\n\r\n| p/Cisco Unified Communications Manager/ cpe:/a:cisco:unified_communications_manager/
 # CUCM 6.1.2.1001-4
-match sip-proxy m|^SIP/2\.0 503 Service Unavailable\r\nDate: .*\r\nWarning: \d+ \"Routing failed: ccbid=\d+ tcpindex=\d+ socket=nm:\d+'\r\nFrom: <sip:nm@nm>;tag=root\r\nContent-Length: 0\r\nTo: <sip:nm2@nm2>;tag=\d+\r\nCall-ID: 50000\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nCSeq: 42 OPTIONS\r\n\r\n| p/Cisco Unified Communications Manager/ cpe:/a:cisco:unified_communications_manager/
+match sip-proxy m|^SIP/2\.0 503 Service Unavailable\r\nDate: .*\r\nWarning: \d+ \"Routing failed: ccbid=\d+ tcpindex=\d+ socket=nm:\d+'\r\nFrom: <sip:xx@xx>;tag=root\r\nContent-Length: 0\r\nTo: <sip:xxx@xxx>;tag=\d+\r\nCall-ID: 50000\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nCSeq: 42 OPTIONS\r\n\r\n| p/Cisco Unified Communications Manager/ cpe:/a:cisco:unified_communications_manager/
 match sip-proxy m|^SIP/2\.0 100 Trying\r\n(?:[^\r\n]+\r\n)*?Server: Sipwise NGCP Proxy ([\w._-]+)\r\n|s p/Sipwise NGCP SIP/ v/$1/ d/PBX/
 match sip-proxy m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: NEC-i SL Series ([\w._-]+)/2\.1\r\n|s p/NEC SL-series VoIP PBX/ v/$1/ d/PBX/
-match sip-proxy m|^SIP/2\.0 400 Bad Request - Branch in top Via header has no Magic Cookie\r\nv:SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nf:<sip:nm@nm>;tag=root\r\nt:<sip:nm2@nm2>;tag=to_tag_[\da-f]+\r\ni:50000\r\nCSeq:42 OPTIONS\r\nl:0\r\n\r\n|s p/Nokia CFX-5000 SIP core controller/ d/PBX/
-match sip-proxy m|^SIP/2\.0 403 Forbidden\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w{16}\r\nCSeq: 42 OPTIONS\r\nCall-ID: 50000\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nContent-Length: 0\r\n\r\n| p/Avaya Session Border Controller/ cpe:/a:avaya:session_border_controller/
+match sip-proxy m|^SIP/2\.0 400 Bad Request - Branch in top Via header has no Magic Cookie\r\nv:SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nf:<sip:xx@xx>;tag=root\r\nt:<sip:xxx@xxx>;tag=to_tag_[\da-f]+\r\ni:50000\r\nCSeq:42 OPTIONS\r\nl:0\r\n\r\n|s p/Nokia CFX-5000 SIP core controller/ d/PBX/
+match sip-proxy m|^SIP/2\.0 403 Forbidden\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=\w{16}\r\nCSeq: 42 OPTIONS\r\nCall-ID: 50000\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nContent-Length: 0\r\n\r\n| p/Avaya Session Border Controller/ cpe:/a:avaya:session_border_controller/
 match sip-proxy m|^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Mediant (\d+)/v\.([\d.]+)[\w.]+\r\n|s p/AudioCodes Mediant $1 session border controller sipd/ v/$2/ cpe:/h:audiocodes:mediant_$1/
 match sip-proxy m|^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Altitude vBox\r\n|s p/Altitude vBox VoIP PBX/ d/PBX/
 match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Asterisk PBX ([\w._+~-]+)\r\n|s p/Asterisk PBX/ v/$1/ d/PBX/ cpe:/a:digium:asterisk:$1/
@@ -14979,10 +14979,10 @@ match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: FPBX-([\d.]+)\(([\
 match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Speedport (W \w+)/Version -([\d.]+)\r\n\r\n|s p/Telekom Speedport router sipd/ v/$2/ i/model $1/ d/broadband router/
 match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Mitel SIP-DECT \(SW-Version=([\w._-]+)\)\r\n|s p/Mitel SIP DECT OpenMobility Manager sipd/ v/$1/ cpe:/a:mitel:openmobility_manager:$1/
 # notes2.exe 9.0.1
-match sip-proxy m|^SIP/2\.0 \d\d\d .*\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[^;\n]+;rport=\d+\r\nContact: <sip:[^>]+>;\+sip\.instance="<urn:uuid:[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}>"\r\nAllow: INVITE, ACK, CANCEL, BYE, NOTIFY, INFO, MESSAGE, UPDATE\r\nContent-Length: 0\r\n\r\n| p/IBM Notes sipd/ cpe:/a:ibm:notes/
-match sip-proxy m|^SIP/2\.0 404 Not Found\r\nVia: SIP/2\.0/TCP nm:5060;received=[^;]+;branch=foo\r\nCall-ID: 50000\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[a-f\d]{8}-[a-f\d]{8}\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Cisco Unified Communications Manager sipd/ cpe:/a:cisco:unified_communications_manager/
-match sip-proxy m|^SIP/2\.0 400 Via transport inconsistent with actual transport\r\nVia: SIP/2\.0/TCP nm:5060;received=[^;]+;branch=foo\r\nCall-ID: 50000\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Cisco Unified Communications Manager sipd/ cpe:/a:cisco:unified_communications_manager/
-match sip-proxy m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=.*\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[a-f0-9]{32}\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nAllow: INVITE, ACK, BYE, CANCEL, REFER, OPTIONS, INFO, NOTIFY, PRACK, UPDATE\r\nAccept: application/sdp\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\n| p|Telos Z/IP ONE sipd| d/specialized/
+match sip-proxy m|^SIP/2\.0 \d\d\d .*\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[^;\n]+;rport=\d+\r\nContact: <sip:[^>]+>;\+sip\.instance="<urn:uuid:[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}>"\r\nAllow: INVITE, ACK, CANCEL, BYE, NOTIFY, INFO, MESSAGE, UPDATE\r\nContent-Length: 0\r\n\r\n| p/IBM Notes sipd/ cpe:/a:ibm:notes/
+match sip-proxy m|^SIP/2\.0 404 Not Found\r\nVia: SIP/2\.0/TCP nm:5060;received=[^;]+;branch=foo\r\nCall-ID: 50000\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=[a-f\d]{8}-[a-f\d]{8}\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Cisco Unified Communications Manager sipd/ cpe:/a:cisco:unified_communications_manager/
+match sip-proxy m|^SIP/2\.0 400 Via transport inconsistent with actual transport\r\nVia: SIP/2\.0/TCP nm:5060;received=[^;]+;branch=foo\r\nCall-ID: 50000\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Cisco Unified Communications Manager sipd/ cpe:/a:cisco:unified_communications_manager/
+match sip-proxy m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=.*\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=[a-f0-9]{32}\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nAllow: INVITE, ACK, BYE, CANCEL, REFER, OPTIONS, INFO, NOTIFY, PRACK, UPDATE\r\nAccept: application/sdp\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\n| p|Telos Z/IP ONE sipd| d/specialized/
 match sip-proxy m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[^;]*;rport=\d+;ingress-zone=(\S+)\r\n(?:[^\r\n]+\r\n)*?Server: Cisco-CUCM([\d.]+)\r\n|s p/Cisco Unified Communications Manager sipd/ v/$2/ i/zone: $1/ cpe:/a:cisco:unified_communications_manager:$2/
 
 match ssl/http m|^HTTP/1\.1 501 Not Implemented\r\nConnection: close\r\nServer: AppWork GmbH HttpServer\r\n\r\n| p/AppWork JDownloader2 httpd/ cpe:/a:appwork:jdownloader:2/
@@ -15012,7 +15012,7 @@ softmatch sip m|^SIP/2\.0 ([-\w .]+)\r\n(?:[^\r\n]+\r\n)*?User-[Aa]gent: ([-\w /
 softmatch sip m|^SIP/2\.0 ([-\w .]+)\r\n| i/SIP end point; Status: $1/
 
 ##############################NEXT PROBE##############################
-Probe UDP SIPOptions q|OPTIONS sip:nm SIP/2.0\r\nVia: SIP/2.0/UDP nm;branch=foo;rport\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nMax-Forwards: 70\r\nContent-Length: 0\r\nContact: <sip:nm@nm>\r\nAccept: application/sdp\r\n\r\n|
+Probe UDP SIPOptions q|OPTIONS sip:xx SIP/2.0\r\nVia: SIP/2.0/UDP nm;branch=foo;rport\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nMax-Forwards: 70\r\nContent-Length: 0\r\nContact: <sip:xx@xx>\r\nAccept: application/sdp\r\n\r\n|
 rarity 5
 ports 5060
 # Some VoIP phones take longer to respond
@@ -15025,9 +15025,9 @@ match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: SAGEM / 3202\.3 / 
 match sip m|^SIP/2\.0 408 Request timeout\r\n(?:[^\r\n]+\r\n)*?Server: sipXecs/([\w._-]+) sipXecs/sipXproxy \(Linux\)\r\n|s p/SIPfoundry sipXecs PBX/ v/$1/ o/Linux/ cpe:/o:linux:linux_kernel/a
 match sip m|^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent: AVM (FRITZ!Box Fon WLAN [\w._ -]+) (?:Annex A )?(?:\(UI\) )?([\w._ -]+ \(\w+ +\d+ +\d+\))|s p/AVM $1 SIP/ v/$2/ d/WAP/ cpe:/h:avm:$1/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: NetSapiens SiPBx 1-1205c\r\n|s p/NetSapiens SiPBX SIP switch/ d/switch/
-match sip m|^SIP/2\.0 481 Call Leg/Transaction Does Not Exist\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=0-\w+-\w+-\w+-\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/UDP nm;received=[\d.]+;rport=\d+;branch=foo\r\nContent-Length: 0\r\n\r\n$| p/Sony PCS-TL50 videoconferencing SIP/ cpe:/h:sony:pcs-tl50/
-match sip m|^SIP/2\.0 200 OK\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/UDP nm;branch=foo;rport\r\nFrom: <sip:nm@nm>;tag=root\r\nCall-ID: 50000\r\nTo: <sip:nm2@nm2>\r\nContact: <sip:nm2@[\d.]+>\r\nContent-Length: 0\r\n\r\n$| p/Ekiga SIP/ v/3.2.7/ cpe:/a:ekiga:ekiga:3.2.7/
-match sip m|^SIP/2\.0 403 Forbidden\r\n(?:[^\r\n]+\r\n)*?From: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=Mitel-([\w._-]+)_\d+-\d+\r\n|s p/Mitel $1 PBX SIP/ d/PBX/
+match sip m|^SIP/2\.0 481 Call Leg/Transaction Does Not Exist\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=0-\w+-\w+-\w+-\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/UDP nm;received=[\d.]+;rport=\d+;branch=foo\r\nContent-Length: 0\r\n\r\n$| p/Sony PCS-TL50 videoconferencing SIP/ cpe:/h:sony:pcs-tl50/
+match sip m|^SIP/2\.0 200 OK\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/UDP nm;branch=foo;rport\r\nFrom: <sip:xx@xx>;tag=root\r\nCall-ID: 50000\r\nTo: <sip:xxx@xxx>\r\nContact: <sip:xx2@[\d.]+>\r\nContent-Length: 0\r\n\r\n$| p/Ekiga SIP/ v/3.2.7/ cpe:/a:ekiga:ekiga:3.2.7/
+match sip m|^SIP/2\.0 403 Forbidden\r\n(?:[^\r\n]+\r\n)*?From: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=Mitel-([\w._-]+)_\d+-\d+\r\n|s p/Mitel $1 PBX SIP/ d/PBX/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE, ACK, CANCEL, BYE, OPTIONS, INFO, REFER, SUBSCRIBE, NOTIFY\r\nAccept: application/sdp,application/dtmf-relay,application/simple-message-summary,message/sipfrag\r\nAccept-Encoding: identity\r\n|s p/Siemens Gigaset DX800A VoIP phone SIP/ d/VoIP phone/ cpe:/h:siemens:gigaset_dx800a/a
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Zoiper rev\.(\d+)\r\n|s p/Zoiper softphone SIP/ v/$1/ cpe:/a:securax:zoiper:$1/
 match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Ekiga/([\w._-]+)\r\n|s p/Ekiga/ v/$1/ cpe:/a:ekiga:ekiga:$1/
@@ -15036,7 +15036,7 @@ match sip m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Grandstream (IP\d+
 match sip m|^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: Yealink (SIP-[\w_]+) ([\d.]+)\r\n|s p/Yealink $1 VoIP phone sipd/ v/$2/ d/VoIP phone/ cpe:/h:yealink:$1/
 match sip m|^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: (VP\d+\w*) ([\d.]+)\r\n|s p/Yealink $1 VoIP phone sipd/ v/$2/ d/VoIP phone/ cpe:/h:yealink:$1/
 match sip m|^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent: FRITZ!OS\r\n|s p/AVM FRITZ!OS SIP/ d/VoIP adapter/
-match sip m|^SIP/2\.0 200 Rawr!!\r\nVia: SIP/2\.0/UDP nm;branch=foo;rport=\d+;received=[\d.]+\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[\da-f]{32}\.[\da-f]+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Kamailio sipd/ cpe:/a:kamailio:kamailio/
+match sip m|^SIP/2\.0 200 Rawr!!\r\nVia: SIP/2\.0/UDP nm;branch=foo;rport=\d+;received=[\d.]+\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=[\da-f]{32}\.[\da-f]+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Kamailio sipd/ cpe:/a:kamailio:kamailio/
 
 match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: FPBX-([\d.]+)\(([\d.]+)\)\r\n|s p/FreePBX/ v/$1/ i/Asterisk $2/ d/PBX/ cpe:/a:digium:asterisk:$2/ cpe:/a:sangoma:freepbx:$1/
 match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Asterisk PBX ([\w._+~-]+)\r\n|s p/Asterisk PBX/ v/$1/ d/PBX/ cpe:/a:digium:asterisk:$1/
@@ -15048,9 +15048,9 @@ match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: Asterisk PBX\r
 match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: OpenSIPS \(([\w\d\.-]+) \(([\d\w/]+)\)\)|s p/OpenSIPS SIP Server/ v/$1/ i/$2/
 match sip-proxy m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?\r\nUser-Agent: ComdasysB2BUA([\w._-]+)\r\n|s p/Comdasys SIP Server/ v/$1/
 match sip-proxy m|^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: NEC-i SL Series ([\w._-]+)/2\.1\r\n|s p/NEC SL-series VoIP PBX/ v/$1/ d/PBX/
-match sip-proxy m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/UDP nm;branch=foo;received=[\d.]+;rport=\d+\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=as\d+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nServer: -(\d[\w._-]+)\((\d[\w._-]+)\)\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO, PUBLISH\r\nSupported: replaces, timer\r\nContact: .*\r\nAccept: application/sdp\r\nContent-Length: 0\r\n\r\n| p/Asterisk/ v/$2/ i/FreePBX $1/ cpe:/a:digium:asterisk:$2/
-match sip-proxy m|^SIP/2\.0 400 Bad Request - [A-Z] - 16007\r\nv:SIP/2\.0/UDP nm;branch=foo;rport=\d+;received=[\d.]+\r\nf:<sip:nm@nm>;tag=root\r\nt:<sip:nm2@nm2>;tag=\d+\r\ni:50000\r\nCSeq:42 OPTIONS\r\nl:0\r\n\r\n| p/Nokia CFX-5000 SIP core controller/ d/PBX/
-match sip-proxy m|^SIP/2\.0 400 Bad Request - [A-Z] - 16007\r\nVia: SIP/2\.0/UDP nm;branch=foo;rport=\d+;received=[\d.]+\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\d+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Nokia CFX-5000 SIP core controller/ d/PBX/
+match sip-proxy m|^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/UDP nm;branch=foo;received=[\d.]+;rport=\d+\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=as\d+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nServer: -(\d[\w._-]+)\((\d[\w._-]+)\)\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO, PUBLISH\r\nSupported: replaces, timer\r\nContact: .*\r\nAccept: application/sdp\r\nContent-Length: 0\r\n\r\n| p/Asterisk/ v/$2/ i/FreePBX $1/ cpe:/a:digium:asterisk:$2/
+match sip-proxy m|^SIP/2\.0 400 Bad Request - [A-Z] - 16007\r\nv:SIP/2\.0/UDP nm;branch=foo;rport=\d+;received=[\d.]+\r\nf:<sip:xx@xx>;tag=root\r\nt:<sip:xxx@xxx>;tag=\d+\r\ni:50000\r\nCSeq:42 OPTIONS\r\nl:0\r\n\r\n| p/Nokia CFX-5000 SIP core controller/ d/PBX/
+match sip-proxy m|^SIP/2\.0 400 Bad Request - [A-Z] - 16007\r\nVia: SIP/2\.0/UDP nm;branch=foo;rport=\d+;received=[\d.]+\r\nFrom: <sip:xx@xx>;tag=root\r\nTo: <sip:xxx@xxx>;tag=\d+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n| p/Nokia CFX-5000 SIP core controller/ d/PBX/
 match sip-proxy m|^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: Asterisk PBX\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO|s p/Asterisk/ d/PBX/ cpe:/a:digium:asterisk/
 match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: CommuniGatePro/([\w._-]+)\r\n|s p/CommuniGatePro VoIP Gateway/ v/$1/ cpe:/a:stalker:communigate_pro:$1/
 match sip-proxy m|^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: STARFACE PBX\r\n|s p/STARFACE PBX/ cpe:/a:starface:starface_pbx/
@@ -15230,7 +15230,7 @@ match xplorer m|Access violation at address \w+ in module 'Xplorer\.exe'\. Read 
 match pc-anywhere m|\x1bY2\0\x01\x03B\0\0\x01\0\x14....................\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0| p/Symantec pcAnywhere/ cpe:/a:symantec:pcanywhere/
 
 ##############################NEXT PROBE##############################
-Probe TCP DistCCD q|DIST00000001ARGC00000005ARGV00000002ccARGV00000002-cARGV00000006nmap.cARGV00000002-oARGV00000006nmap.oDOTI00000000|
+Probe TCP DistCCD q|DIST00000001ARGC00000005ARGV00000002ccARGV00000002-cARGV00000006user.cARGV00000002-oARGV00000006user.oDOTI00000000|
 rarity 8
 ports 3632
 
@@ -15831,7 +15831,7 @@ match backdoor m|^666(\d+)\xff(\d+)\xff(\d+)\xff$| p/Beast Trojan/ v/version 2/ 
 
 
 ##############################NEXT PROBE##############################
-Probe TCP firebird q|\0\0\0\x01\0\0\0\x13\0\0\0\x02\0\0\0\x24\0\0\0\x0bservice_mgr\0\0\0\0\x02\0\0\0\x13\x01\x08scanner \x04\x05nmap \x06\0\0\0\0\0\x08\0\0\0\x01\0\0\0\x02\0\0\0\x03\0\0\0\x02\0\0\0\x0a\0\0\0\x01\0\0\0\x02\0\0\0\x03\0\0\0\x04|
+Probe TCP firebird q|\0\0\0\x01\0\0\0\x13\0\0\0\x02\0\0\0\x24\0\0\0\x0bservice_mgr\0\0\0\0\x02\0\0\0\x13\x01\x08scanner \x04\x05user \x06\0\0\0\0\0\x08\0\0\0\x01\0\0\0\x02\0\0\0\x03\0\0\0\x02\0\0\0\x0a\0\0\0\x01\0\0\0\x02\0\0\0\x03\0\0\0\x04|
 rarity 8
 ports 3050
 
@@ -16148,18 +16148,18 @@ match dominoconsole m|^([^/]+)/([\w._-]+):([^:]*):([^:]*):| p/Lotus Domino Conso
 ##############################NEXT PROBE##############################
 # Informix probe
 #
-Probe TCP informix q|\0\x94\x01\x3c\0\0\0\x64\0\x65\0\0\0\x3d\0\x06IEEEM\0\0lsqlexec\0\0\0\0\0\0\x069.280\0\0\x0cRDS#R000000\0\0\x05sqli\0\0\0\x01\x33\0\0\0\0\0\0\0\0\0\x01\0\x05nmap\0\0\x05nmap\0ol\0\0\0\0\0\0\0\0\0=tlitcp\0\0\0\0\0\x01\0\x68\0\x0b\0\0\0\x03\0\x05nmap\0\0\0\0\0\0\0\0\0\0\0\0\x6a\0\0\0\x7f|
+Probe TCP informix q|\0\x94\x01\x3c\0\0\0\x64\0\x65\0\0\0\x3d\0\x06IEEEM\0\0lsqlexec\0\0\0\0\0\0\x069.280\0\0\x0cRDS#R000000\0\0\x05sqli\0\0\0\x01\x33\0\0\0\0\0\0\0\0\0\x01\0\x05user\0\0\x05user\0ol\0\0\0\0\0\0\0\0\0=tlitcp\0\0\0\0\0\x01\0\x68\0\x0b\0\0\0\x03\0\x05user\0\0\0\0\0\0\0\0\0\0\0\0\x6a\0\0\0\x7f|
 rarity 8
 ports 1526,9088-9100
 
-match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.nmap@[\d\w.-]+\0k\0\0\0\0\0\0..\0\0\0\0\0.(.*)\0\0..*\0\0.([A-Z]\:[^/]*)\0\0t\0\x08\x01Y\0\x06\x01Y\0\0\0\x7f$|s p/Informix Dynamic Server/ v/11.50/ i/Path: $2/ o/Windows/ h/$1/ cpe:/a:ibm:informix_dynamic_server:11.50/ cpe:/o:microsoft:windows/a
-match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.nmap@[\d\w.-]+\0k\0\0\0\0\0\0..\0\0\0\0\0.(.*)\0\0..*\0\0.([^\\]*)\0\0t\0\x08\0\0\x03\xe9\0\0\x03\xe9\0\x7f$|s p/Informix Dynamic Server/ v/11.50/ i/Path: $2/ h/$1/ cpe:/a:ibm:informix_dynamic_server:11.50/
+match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.user@[\d\w.-]+\0k\0\0\0\0\0\0..\0\0\0\0\0.(.*)\0\0..*\0\0.([A-Z]\:[^/]*)\0\0t\0\x08\x01Y\0\x06\x01Y\0\0\0\x7f$|s p/Informix Dynamic Server/ v/11.50/ i/Path: $2/ o/Windows/ h/$1/ cpe:/a:ibm:informix_dynamic_server:11.50/ cpe:/o:microsoft:windows/a
+match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.user@[\d\w.-]+\0k\0\0\0\0\0\0..\0\0\0\0\0.(.*)\0\0..*\0\0.([^\\]*)\0\0t\0\x08\0\0\x03\xe9\0\0\x03\xe9\0\x7f$|s p/Informix Dynamic Server/ v/11.50/ i/Path: $2/ h/$1/ cpe:/a:ibm:informix_dynamic_server:11.50/
 # Should we detect windows paths here, too?
 # non-capturing group is a path that may be interesting. e.g.: /opt/SinoDB_Software_Bundle/bin/oninit
-match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.nmap@[\d\w.-]+\0k\0\0\0\0\0\0..\0\0\0\0\0.(.+)\0\0..*\0\0.([^\\]+)\0\0n\0\x04\0{5}t\x001\0\0\x03\xe9\0\0\x03\xe9..(?:[^\0]+)\0\0\x7f|s p/Informix Dynamic Server/ v/11.70/ i/Path: $2/ h/$1/ cpe:/a:ibm:informix_dynamic_server:11.70/
+match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.user@[\d\w.-]+\0k\0\0\0\0\0\0..\0\0\0\0\0.(.+)\0\0..*\0\0.([^\\]+)\0\0n\0\x04\0{5}t\x001\0\0\x03\xe9\0\0\x03\xe9..(?:[^\0]+)\0\0\x7f|s p/Informix Dynamic Server/ v/11.70/ i/Path: $2/ h/$1/ cpe:/a:ibm:informix_dynamic_server:11.70/
 
-match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.nmap@[\d\w.-]+\0k\0\0\0\0\0\x03..\0\0\0\0\0.([^\0]+)\0\0.[^\0]*\0\0.([A-Z]\:[^/]*)\0|s p/Informix Dynamic Server/ i/Path: $2/ o/Windows/ h/$1/ cpe:/a:ibm:informix_dynamic_server/ cpe:/o:microsoft:windows/a
-match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.nmap@[\d\w.-]+\0k\0\0\0\0\0\x03..\0\0\0\0\0.([^\0]+)\0\0.[^\0]*\0\0.([^\\]*)\0|s p/Informix Dynamic Server/ i/Path: $2/ h/$1/ cpe:/a:ibm:informix_dynamic_server/
+match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.user@[\d\w.-]+\0k\0\0\0\0\0\x03..\0\0\0\0\0.([^\0]+)\0\0.[^\0]*\0\0.([A-Z]\:[^/]*)\0|s p/Informix Dynamic Server/ i/Path: $2/ o/Windows/ h/$1/ cpe:/a:ibm:informix_dynamic_server/ cpe:/o:microsoft:windows/a
+match informix m|^..\x03<\x10\0\0d\0e\0\0\0=\0\x06IEEEI\0\0lsrvinfx\0\0\0\0\0\0\x05V1\.0\0\0\x04SER\0\0\x08asfecho\0{19}o[ln]\0{9}=soctcp\0{5}\x01\0f\0{6}\xfcI..\0\0\0\x01\0\0\0.user@[\d\w.-]+\0k\0\0\0\0\0\x03..\0\0\0\0\0.([^\0]+)\0\0.[^\0]*\0\0.([^\\]*)\0|s p/Informix Dynamic Server/ i/Path: $2/ h/$1/ cpe:/a:ibm:informix_dynamic_server/
 
 softmatch informix m|^..\x03<\x10\0\0d\0e\0\0\0=|
 
@@ -16177,7 +16177,7 @@ match oo-defrag m|^\x10\0\0\0\x01\0\0\0\x03\0\0\0\r\x08\0\0\x02\0{7}j\0\0\0\x01\
 ##############################NEXT PROBE##############################
 # MQ Initial Packet Queue-manager=nmap-probe; channel=SYSTEM.ADMIN.SRVCONN
 #
-Probe TCP ibm-mqseries q|TSH\x20\x00\x00\x00\xEC\x01\x01\x31\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x11\x04\xB8\x00\x00\x49\x44\x20\x20\x0A\x26\x00\x00\x00\x00\x00\x00\x00\x00\x7F\xF6\x06\x40\x00\x00\x00\x00\x00\x00SYSTEM.ADMIN.SVRCONN\x51\x00\x04\xB8nmap-probe\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x00\x00\x00\x01\x00\x6A\x00\x00\x00\xFF\x00\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0A\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02MQJB00000000CANNED_DATA\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|
+Probe TCP ibm-mqseries q|TSH\x20\x00\x00\x00\xEC\x01\x01\x31\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x11\x04\xB8\x00\x00\x49\x44\x20\x20\x0A\x26\x00\x00\x00\x00\x00\x00\x00\x00\x7F\xF6\x06\x40\x00\x00\x00\x00\x00\x00SYSTEM.ADMIN.SVRCONN\x51\x00\x04\xB8user-probe\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x00\x00\x00\x01\x00\x6A\x00\x00\x00\xFF\x00\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0A\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02MQJB00000000CANNED_DATA\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|
 rarity 8
 ports 1414-1420
 
@@ -16238,11 +16238,11 @@ ports 19150
 match gkrellm m|^<gkrellmd_setup>\n<version>\ngkrellmd ([\w._-]+)\n| p/GKrellM System Monitor/ v/$1/
 
 ##############################NEXT PROBE##############################
-Probe TCP metasploit-xmlrpc q|<?xml version="1.0" ?><methodCall><methodName>nmap.probe</methodName></methodCall>\n\0|
+Probe TCP metasploit-xmlrpc q|<?xml version="1.0" ?><methodCall><methodName>user.probe</methodName></methodCall>\n\0|
 ports 9390,55553
 sslports 55553
 rarity 9
-match metasploit-xmlrpc m|<\?xml\x20version=\"1\.0\"\x20\?><methodResponse><fault><value><struct><member><name>faultCode</name><value><i4>-99</i4></value></member><member><name>faultString</name><value><string>Method\x20nmap\.probe\x20missing\x20or\x20wrong\x20number\x20of\x20parameters!</string></value></member></struct></value></fault></methodResponse>\n\0|
+match metasploit-xmlrpc m|<\?xml\x20version=\"1\.0\"\x20\?><methodResponse><fault><value><struct><member><name>faultCode</name><value><i4>-99</i4></value></member><member><name>faultString</name><value><string>Method\x20user\.probe\x20missing\x20or\x20wrong\x20number\x20of\x20parameters!</string></value></member></struct></value></fault></methodResponse>\n\0|
 
 match omp m|^<omp_response status=\"400\" status_text=\"First command must be AUTHENTICATE, COMMANDS or GET_VERSION\"/>| p/OpenVAS Management Protocol/ cpe:/a:openvas:openvas_manager/
 
@@ -16419,7 +16419,7 @@ match minecraft-classic m|^\x01\x01\x0eUnhandled message id "254"! {37}| p/MCGal
 # of "nm@p"
 # http://erlang.org/doc/apps/erts/erl_dist_protocol.html#id90729
 # http://seclists.org/nmap-dev/2013/q1/360
-Probe TCP erlang-node q|\0\x0bn\0\0\0\0\x01\x04nm@p|
+Probe TCP erlang-node q|\0\x0bn\0\0\0\0\x01\x04xx@p|
 rarity 9
 
 match erlang-node m|^\0\x03sok\0.n\0\0.{8}(.+).|s p/Erlang Distribution Node/ i/Node name: $1/
@@ -16762,7 +16762,7 @@ softmatch niagara-fox m|^fox a 0|
 
 ##############################NEXT PROBE##############################
 # MQTT v3.1.1 CONNECT
-Probe TCP mqtt q|\x10\x10\x00\x04MQTT\x04\x02\x00\x1e\x00\x04nmap|
+Probe TCP mqtt q|\x10\x10\x00\x04MQTT\x04\x02\x00\x1e\x00\x04user|
 rarity 9
 ports 1883
 sslports 8883

@@ -207,7 +207,7 @@ if HAVE_SSL then
       self.is_extended = ( (self.flags & NTLM_NegotiateExtendedSecurity) == NTLM_NegotiateExtendedSecurity )
       local is_unicode  = ( (self.flags & NTLM_NegotiateUnicode) == NTLM_NegotiateUnicode )
 
-      self.workstation = "NMAP-HOST"
+      self.workstation = "SASL-HOST"
       self.domain = self.username:match("^(.-)\\(.*)$") or "DOMAIN"
 
       if ( is_unicode ) then

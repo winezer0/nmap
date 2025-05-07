@@ -208,7 +208,7 @@ Request = {
     end,
 
     __tostring = function(self)
-      local cookie = "mstshash=nmap"
+      local cookie = "mstshash=user"
 
       local data = string.pack(">I2I2B",
         0x0000, -- dst reference

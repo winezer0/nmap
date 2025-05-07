@@ -555,7 +555,7 @@ function start_netbios(host, port, name)
       0x00,                        -- flags
       0x44,                        -- length
       netbios.name_encode(name),   -- server name
-      netbios.name_encode("NMAP")  -- client name
+      netbios.name_encode("USER")  -- client name
       );
 
     stdnse.debug3("SMB: Connecting to %s", host.ip)
@@ -1199,7 +1199,7 @@ local function start_session_basic(smb, log_errors, overrides)
     .. string.pack("<zzzz",
       username,               -- Account
       domain,                 -- Domain
-      "Nmap",                 -- OS
+      "USER",                 -- OS
       "Native Lanman"         -- Native LAN Manager
       )
 
@@ -1398,7 +1398,7 @@ local function start_session_extended(smb, log_errors, overrides)
       -- Data is a list of strings, terminated by a blank one.
       data = security_blob -- Security blob
       .. string.pack("<zzz",
-        "Nmap",                -- OS
+        "USER",                -- OS
         "Native Lanman",       -- Native LAN Manager
         ""                     -- Primary domain
         )

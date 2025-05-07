@@ -138,10 +138,10 @@ AuthOptions =
   new = function( self )
     local o = {
       auth_term = "pts/" .. math.random(255),
-      auth_prog = ("sqlplus@nmap_%d (TNS V1-V3)"):format(math.random(32768)),
-      auth_machine = "nmap_target",
+      auth_prog = ("sqlplus@orcl_%d (TNS V1-V3)"):format(math.random(32768)),
+      auth_machine = "orcl_target",
       auth_pid = "" .. math.random(32768),
-      auth_sid = "nmap_" .. math.random(32768)
+      auth_sid = "orcl_" .. math.random(32768)
     }
     setmetatable(o, self)
     self.__index = self

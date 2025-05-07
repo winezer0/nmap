@@ -1183,7 +1183,7 @@ Helper = {
     self.__index = self
     o.host = host
     o.port = port
-    o.instance = instance or "nmap_probe"
+    o.instance = instance or "user_probe"
     return o
   end,
 

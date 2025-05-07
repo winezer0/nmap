@@ -75,7 +75,7 @@ fetch_host_key = function(host, port)
   status = socket:receive_lines(1)
   if not status then socket:close(); return end
   -- send our banner
-  status = socket:send("SSH-1.5-Nmap-SSH1-Hostkey\r\n")
+  status = socket:send("SSH-1.5-SSHD-SSH1-Hostkey\r\n")
   if not status then socket:close(); return end
 
   local data, packet_length, padding, offset
