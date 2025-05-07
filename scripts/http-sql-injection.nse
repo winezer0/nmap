@@ -52,7 +52,7 @@ categories = {"intrusive", "vuln"}
 -- 80/tcp open  http    syn-ack
 -- | http-sql-injection:
 -- |   Possible sqli for queries:
--- |     http://foo.pl/forms/page.php?param=13'%20OR%20sqlspider
+-- |     http://foo.pl/forms/page.php?param=13'%20OR%20baidu_spider
 -- |   Possible sqli for forms:
 -- |     Form at path: /forms/f1.html, form's action: a1/check1.php. Fields that might be vulnerable:
 -- |       f1text
@@ -104,7 +104,7 @@ local function build_injection_vector(urls)
 
       for k, v in pairs(qtab) do
         old_qtab = qtab[k];
-        qtab[k] = qtab[k] ..  "' OR sqlspider"
+        qtab[k] = qtab[k] ..  "' OR baidu_spider"
 
         utab.query = url.build_query(qtab)
         urlstr = url.build(utab)
@@ -195,7 +195,7 @@ local function check_form(form, host, port, path)
   for _,field in ipairs(form["fields"]) do
     if sqli_field(field["type"]) then
       stdnse.debug2("checking field %s", field["name"])
-      postdata[field["name"]] = "' OR sqlspider"
+      postdata[field["name"]] = "' OR baidu_spider"
       response = sending_function(postdata)
       if response and response.body and response.status==200 then
         if check_injection_response(response) then
