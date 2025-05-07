@@ -69,3 +69,4 @@ libz/configure.log
 !zenmap/share/zenmap/locale/Makefile
 *.user
 /mswin32/.vs
+/.idea
